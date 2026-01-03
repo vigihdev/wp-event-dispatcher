@@ -10,8 +10,7 @@
         "hooks",
         "symfony",
         "architecture",
-        "plugin development",
-        "vigihdev"
+        "plugin development"
     ],
     "type": "library",
     "license": "MIT",
@@ -25,6 +24,12 @@
             "role": "developer"
         }
     ],
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://repo.thrubus.id"
+        }
+    ],
     "config": {
         "process-timeout": 0
     },
@@ -35,6 +40,7 @@
         "symfony/event-dispatcher": "^6.4"
     },
     "require-dev": {
+        "vigihdev/wp-kernel": "dev-main",
         "phpunit/phpunit": "10.5.x-dev"
     },
     "autoload": {
