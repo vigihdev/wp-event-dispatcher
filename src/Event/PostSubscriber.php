@@ -18,10 +18,7 @@ final class PostSubscriber implements EventSubscriberInterface
         ];
     }
 
-    public function onPostSave(PostPlacedEvent $event): void
-    {
-        var_dump($event);
-    }
+    public function onPostSave(PostPlacedEvent $event): void {}
 
     public function onPostDelete(PostPlacedEvent $event): void {}
 }
