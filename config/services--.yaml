@@ -1,0 +1,41 @@
+# services.yaml
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: false
+    public: false
+
+  listener.prototype:
+    abstract: true
+    class: 'Vigihdev\WpEventDispatcher\Listeners\RequestListener'
+    arguments:
+      $wpHook: ~
+      $method: ~
+      $className: ~
+      $priority: 10
+      $acceptedArgs: 1
+
+  post_event.prototype:
+    parent: listener.prototype
+    arguments:
+      $className: 'Vigihdev\WpEventDispatcher\Event\PostEvent'
+
+  save_post.event:
+    parent: post_event.prototype
+    tags: ["event"]
+    arguments:
+      $wpHook: "save_post"
+      $method: "onPostSave"
+
+  wp_insert_post_data.event:
+    parent: post_event.prototype
+    tags: ["event"]
+    arguments:
+      $wpHook: "wp_insert_post_data"
+      $method: "onPostCreate"
+
+  Vigihdev\WpEventDispatcher\Contracts\EventManagerInterface:
+    public: true
+    class: 'Vigihdev\WpEventDispatcher\Services\EventManagerService'
+    arguments:
+      $listeners: !tagged_iterator event
